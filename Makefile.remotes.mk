@@ -43,6 +43,8 @@ reassign:  ## Try to reassign origin to a fork
 					$${GIT_IN} remote set-url upstream "git@github.com:edx/$${repo}.git"; \
 					git submodule sync >/dev/null 2>&1; \
 					$${GIT_IN} fetch --all --prune >/dev/null 2>&1; \
+					$${GIT_IN} checkout master; \
+					$${GIT_IN} reset --hard origin/master; \
 				else \
 					echo "No such fork exists: $${forked_url}"; \
 					$${GIT_IN} remote remove fork || true; \
